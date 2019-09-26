@@ -20,12 +20,13 @@ class LambdaOffline {
     );
 
     this.hooks = {
+      'before:offline:start': this.start.bind(this),
       'before:offline:start:init': this.start.bind(this),
     };
   }
 
   start() {
-    this.buidServer();
+    this.buildServer();
   }
 
   log(message) {
@@ -36,7 +37,7 @@ class LambdaOffline {
     return Math.random().toString(36).substring(7);
   }
 
-  buidServer() {
+  buildServer() {
     this.server = new Hapi.Server();
     this.server.connection({ port: this.config.port, host: this.config.host });
 
